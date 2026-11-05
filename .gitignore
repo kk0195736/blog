@@ -1,0 +1,4 @@
+# Hugo のビルド結果(GitHub Actions が作り直す)
+public/
+resources/
+.hugo_build.lock
