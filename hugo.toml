@@ -1,4 +1,15 @@
 baseURL = "https://blog.kayabon.net/"
 languageCode = 'ja'
-title = 'Kayabon Tech Blog'
+title = 'kayabon.net'
 theme = "PaperMod"
+
+[params.label]
+icon = "/logo.svg"
+iconHeight = 28
+
+[params.assets]
+favicon = "/logo.svg"
+favicon16x16 = "/favicon-16x16.png"
+favicon32x32 = "/favicon-32x32.png"
+apple_touch_icon = "/apple-touch-icon.png"
+theme_color = "#4f46e5"
