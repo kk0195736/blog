@@ -3,6 +3,13 @@ languageCode = 'ja'
 title = 'kayabon.net'
 theme = "PaperMod"
 
+[params]
+ShowShareButtons = true
+ShareButtons = ["x"]
+
+[params.social]
+twitter = "kayabon4"
+
 [params.label]
 icon = "/logo.svg"
 iconHeight = 28
