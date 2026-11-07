@@ -1,0 +1,18 @@
+{{- /* 記事ごとの OGP 画像(1200x630)を作る。背景 assets/images/ogp-base.png にタイトルとサイト名を描く。
+       日本語は空白で折り返せないので、14 文字ごとに改行する */ -}}
+{{- $base := resources.Get "images/ogp-base.png" }}
+{{- $font := resources.Get "fonts/BIZUDPGothic-Bold.ttf" }}
+{{- $chars := split .Title "" }}
+{{- $lines := slice }}
+{{- $cur := "" }}
+{{- range $i, $c := $chars }}
+  {{- if and (gt $i 0) (eq (mod $i 14) 0) }}{{ $lines = $lines | append $cur }}{{ $cur = "" }}{{ end }}
+  {{- $cur = printf "%s%s" $cur $c }}
+{{- end }}
+{{- $lines = $lines | append $cur }}
+{{- $title := delimit (first 3 $lines) "\n" }}
+{{- $img := $base | images.Filter
+    (images.Text $title (dict "font" $font "size" 68 "linespacing" 26 "color" "#1f2328" "x" 80 "y" 110))
+    (images.Text site.Title (dict "font" $font "size" 40 "color" "#4f46e5" "x" 196 "y" 490))
+}}
+{{- return $img }}

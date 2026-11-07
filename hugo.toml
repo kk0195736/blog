@@ -5,7 +5,7 @@ theme = "PaperMod"
 
 [params]
 ShowShareButtons = true
-ShareButtons = ["x"]
+ShareButtons = ["x", "hatena"]
 
 [params.social]
 twitter = "kayabon4"
@@ -20,3 +20,17 @@ favicon16x16 = "/favicon-16x16.png"
 favicon32x32 = "/favicon-32x32.png"
 apple_touch_icon = "/apple-touch-icon.png"
 theme_color = "#4f46e5"
+
+[params.homeInfoParams]
+Title = "kayabon.net"
+Content = "かやぼんの技術ブログです。自宅サーバーやバイブコーディングのことを書いています。  \n[プロフィール](https://kayabon.net) ・ [Qiita](https://qiita.com/kayabon)"
+
+[[params.socialIcons]]
+name = "x"
+title = "X(@kayabon4)"
+url = "https://x.com/kayabon4"
+
+[[params.socialIcons]]
+name = "rss"
+title = "RSS"
+url = "/index.xml"
