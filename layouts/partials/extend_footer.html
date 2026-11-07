@@ -1,9 +1,23 @@
-{{- /* 図(Mermaid)があるページだけ、Mermaid を読み込む。PaperMod のダークモードにも合わせる */ -}}
+{{- /* 図(Mermaid)があるページだけ、Mermaid を読み込む。
+       PaperMod はダークモードを <html data-theme="dark"> で表すので、それに合わせて配色を変え、
+       切り替えたときは描き直す */ -}}
 {{- if .Store.Get "hasMermaid" }}
 <style>.post-content pre.mermaid{background:transparent;border:0;text-align:center;}</style>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
-  const dark = document.body.classList.contains('dark');
-  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'default', fontFamily: 'sans-serif' });
+  const nodes = [...document.querySelectorAll('pre.mermaid')];
+  nodes.forEach((el) => { el.dataset.src = el.textContent; });
+  const isDark = () => document.documentElement.dataset.theme === 'dark';
+  let current = null;
+  async function draw() {
+    const theme = isDark() ? 'dark' : 'default';
+    if (theme === current) return;
+    current = theme;
+    mermaid.initialize({ startOnLoad: false, theme, fontFamily: 'sans-serif' });
+    nodes.forEach((el) => { el.removeAttribute('data-processed'); el.textContent = el.dataset.src; });
+    await mermaid.run({ nodes });
+  }
+  draw();
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
 {{- end }}
