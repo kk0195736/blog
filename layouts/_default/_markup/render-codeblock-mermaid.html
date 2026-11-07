@@ -1,0 +1,3 @@
+{{- /* ```mermaid のコードブロックを図にする(Mermaid は extend_footer.html で読み込む) */ -}}
+<pre class="mermaid">{{ .Inner | htmlEscape | safeHTML }}</pre>
+{{- .Page.Store.Set "hasMermaid" true -}}
